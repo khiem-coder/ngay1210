@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(${title})}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}"></nav>
+<div class="container" style="max-width: 640px;">
+    <h3 class="mb-3" th:text="${title}">Thêm loại khóa học</h3>
+    <form method="post" th:action="${formAction}" th:object="${form}" novalidate class="card card-body">
+        <div class="mb-3">
+            <label class="form-label">Tên loại khóa học <span class="text-danger">*</span></label>
+            <input type="text" th:field="*{name}" class="form-control"
+                   th:classappend="${#fields.hasErrors('name')} ? 'is-invalid'">
+            <div class="invalid-feedback" th:errors="*{name}"></div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Mô tả</label>
+            <textarea th:field="*{description}" rows="3" class="form-control"
+                      th:classappend="${#fields.hasErrors('description')} ? 'is-invalid'"></textarea>
+            <div class="invalid-feedback" th:errors="*{description}"></div>
+        </div>
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Lưu</button>
+            <a class="btn btn-outline-secondary" th:href="@{/categories}">Hủy</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
